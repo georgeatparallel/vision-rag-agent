@@ -1,0 +1,17 @@
+The Solar System
+
+The solar system consists of the Sun and all the objects that orbit around it, including eight planets, their moons, dwarf planets, asteroids, and comets.
+
+The eight planets in order from the Sun are:
+1. Mercury – the smallest planet and closest to the Sun. It has no atmosphere and extreme temperature swings.
+2. Venus – the hottest planet due to its thick carbon dioxide atmosphere and greenhouse effect. It rotates backwards compared to most planets.
+3. Earth – the only known planet to harbor life. It has one natural satellite, the Moon, and a protective magnetic field.
+4. Mars – known as the Red Planet due to iron oxide on its surface. It has the tallest volcano in the solar system, Olympus Mons, and evidence of ancient liquid water.
+5. Jupiter – the largest planet, a gas giant with a Great Red Spot, a storm larger than Earth that has persisted for centuries. It has 95 known moons, including Europa which may have a subsurface ocean.
+6. Saturn – famous for its spectacular ring system made of ice and rock. It is the least dense planet and could theoretically float on water.
+7. Uranus – an ice giant that rotates on its side with an axial tilt of 98 degrees. It has faint rings and 27 known moons.
+8. Neptune – the windiest planet with storms reaching 2,100 km/h. It has a large moon called Triton that orbits in the opposite direction of Neptune's rotation.
+
+The Sun contains 99.86% of the total mass of the solar system. It is a G-type main-sequence star (yellow dwarf) located about 26,000 light-years from the center of the Milky Way galaxy.
+
+The asteroid belt lies between Mars and Jupiter and contains millions of rocky objects. The Kuiper Belt beyond Neptune is home to dwarf planets like Pluto, Eris, and Makemake.
