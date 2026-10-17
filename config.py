@@ -13,6 +13,9 @@ warnings.filterwarnings("ignore", message=".*slow image processor.*")
 
 ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "")
 
+# Explicit opt-in; the bundled stdio web tools remain the default.
+WEB_TOOLS_PROVIDER: str = os.getenv("WEB_TOOLS_PROVIDER", "local").strip().lower()
+
 CHROMA_DIR = Path("./chroma_db")
 TEXT_COLLECTION = "text_docs"
 IMAGE_COLLECTION = "image_docs"

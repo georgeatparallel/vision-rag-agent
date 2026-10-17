@@ -66,6 +66,42 @@ Images are indexed **twice**: a CLIP embedding for visual similarity search, and
 
 The MCP server runs as a **subprocess** via stdio transport using the `mcp` Python package. Tool schemas are loaded dynamically at agent startup.
 
+### Optional Parallel web tools
+
+Set `WEB_TOOLS_PROVIDER=parallel` in `.env` to use
+[Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp)
+for free web search and page fetching without a Parallel account or API key.
+Search uses Fast mode. The client connects to `https://search.parallel.ai/mcp`
+over Streamable HTTP; `wikipedia` continues to use the bundled stdio server.
+Leave the setting unset, or set it to `local`, to use the original web tools.
+
+The agent still sees `web_search` and `fetch_url`, with schemas discovered from
+Parallel at startup. For direct Python calls, `web_search` takes `objective` and
+`search_queries`; `fetch_url` maps to Parallel's `web_fetch` and takes `urls`.
+Results are the server's text, including source URLs. Requests have a 60-second
+overall timeout; call failures are returned as error text without switching providers.
+Startup discovery failures stop tool loading. The anonymous service has usage
+limits; see the linked setup guide. Claude queries still require your Anthropic key.
+
+You can check the web tools independently of the embedding stack:
+
+```bash
+pip install -r requirements-web.txt
+WEB_TOOLS_PROVIDER=parallel python - <<'PY'
+from mcp_client import list_mcp_tools, call_mcp_tool
+
+print([tool["name"] for tool in list_mcp_tools()])
+print(call_mcp_tool("web_search", {
+    "objective": "Find the Python documentation for virtual environments",
+    "search_queries": ["Python venv documentation"],
+}))
+print(call_mcp_tool("fetch_url", {"urls": ["https://docs.python.org/3/library/venv.html"]}))
+PY
+```
+
+Run the offline web-tool tests with `python -m unittest discover -s tests -v`
+after installing `requirements-web.txt`.
+
 ---
 
 ## Quick start
@@ -123,7 +159,7 @@ vision_RAG/
 ├── retriever.py         # Dual-collection ChromaDB retriever
 ├── tools.py             # RAG tool schemas + implementations
 ├── rag_mcp_server.py    # FastMCP server: fetch_url, web_search, wikipedia
-├── mcp_client.py        # Async stdio MCP client wrapper
+├── mcp_client.py        # Stdio/optional Parallel HTTP MCP client wrapper
 ├── agent.py             # Agentic loop with true token streaming
 ├── main.py              # CLI: ingest / query / chat / tools
 ├── my_docs/             # Sample documents and images
@@ -143,8 +179,8 @@ torch>=2.0.0
 Pillow>=10.0.0
 python-dotenv>=1.0.0
 pypdf>=4.0.0
-mcp>=1.0.0
-httpx>=0.25.0
+mcp>=1.26.0,<2
+httpx>=0.27.1,<1
 tqdm>=4.65.0
 ```
 

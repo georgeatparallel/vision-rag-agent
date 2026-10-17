@@ -1,0 +1,4 @@
+# Web tools and their standalone smoke checks; no embedding/model downloads.
+mcp>=1.26.0,<2
+httpx>=0.27.1,<1
+python-dotenv>=1.0.0
